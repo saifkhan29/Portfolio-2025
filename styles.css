@@ -1,11 +1,12 @@
 :root {
-    --primary-color: #2563eb;
-    --text-color: #1f2937;
-    --bg-color: #ffffff;
+    --primary-color: #FF6B2B;
+    --text-color: #1A1A1A;
+    --bg-color: #FFFFFF;
     --card-bg: #f3f4f6;
     --border-color: #e5e7eb;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --primary-color-rgb: 37, 99, 235; /* RGB values for your primary color */
+    --primary-color-rgb: 255, 107, 43; /* RGB values for your primary color */
+    --border-radius: 100px;
 }
 
 .dark-mode {
@@ -32,39 +33,50 @@ body {
 }
 
 .navbar {
+    background: var(--bg-color);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    margin: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-color);
-    box-shadow: 0 2px 10px var(--shadow-color);
     z-index: 1000;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.nav-items {
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
-    gap: 2rem;
+    justify-content: space-between;
     align-items: center;
 }
 
-.nav-items a {
-    text-decoration: none;
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
     color: var(--text-color);
+    text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
 
-.nav-items a:hover {
+.nav-links a.active {
     color: var(--primary-color);
+    background: rgba(255, 107, 43, 0.1);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
 }
 
 #theme-toggle {
@@ -77,95 +89,144 @@ body {
 
 .hero {
     min-height: 100vh;
-    padding: 120px 5% 60px;
-    position: relative;
-    overflow: hidden;
-    background: var(--bg-color);
-}
-
-.hero-container {
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
 }
 
 .hero-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-    height: calc(100vh - 180px);
+    max-width: 1400px;
+    width: 100%;
+    text-align: center;
+    position: relative;
 }
 
-.hero-text {
+.chat-bubble {
+    display: inline-block;
+    background: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
     position: relative;
-    z-index: 2;
+}
+
+.chat-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 10px;
+    background: white;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .hero-text h1 {
-    font-size: 4.5rem;
+    font-size: 5rem;
+    margin-bottom: 1rem;
     line-height: 1.1;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
 }
 
 .highlight {
     color: var(--primary-color);
-    position: relative;
-    display: inline-block;
 }
 
-.highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    width: 100%;
-    height: 8px;
-    background: var(--primary-color);
-    opacity: 0.3;
-    z-index: -1;
-}
-
-.typing-text {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-}
-
-.hero-description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: var(--text-color);
-    opacity: 0.8;
-    margin-bottom: 2.5rem;
-    max-width: 500px;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1.5rem;
+.hero-text h2 {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    line-height: 1.1;
 }
 
 .hero-image {
     position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.orange-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    border-radius: 50%;
+    top: 0;
+    left: 0;
     z-index: 1;
 }
 
-.image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
+.hero-rating {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
-.image-wrapper img {
-    width: 90%;
-    height: auto;
-    animation: float 6s ease-in-out infinite;
+.stars {
+    color: #FFD700;
+    font-size: 1.2rem;
+}
+
+.experience {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.years {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.exp-text {
+    color: #666;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s;
+}
+
+.secondary-btn {
+    background: rgba(255, 107, 43, 0.1);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-3px);
 }
 
 .floating-elements {
@@ -323,34 +384,28 @@ body {
         font-size: 3.5rem;
     }
 
-    .hero-description {
-        margin: 0 auto 2.5rem;
-    }
-
-    .hero-buttons {
-        justify-content: center;
+    .hero-text h2 {
+        font-size: 3.5rem;
     }
 
     .hero-image {
-        order: -1;
-    }
-
-    .image-wrapper img {
         width: 70%;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 2.8rem;
+    .nav-links {
+        display: none;
     }
 
-    .typing-text {
-        font-size: 1.2rem;
+    .hero-text h1,
+    .hero-text h2 {
+        font-size: 3rem;
     }
 
-    .hero-description {
-        font-size: 1rem;
+    .hero-image {
+        width: 300px;
+        height: 300px;
     }
 
     .tech-badge {
@@ -661,7 +716,7 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .nav-items {
+    .nav-links {
         display: none;
     }
     
